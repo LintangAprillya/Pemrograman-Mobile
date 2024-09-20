@@ -8,6 +8,7 @@ Kelas : 2C / 11
 
 NIM : 2241720231
 
+Link GitHub : https://github.com/LintangAprillya/Pemrograman-Mobile/tree/main/Pertemuan%205
 ---
 
 ## Jobsheet 6 : Widget Dasar Flutter
