@@ -165,7 +165,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }*/
-
+/*
 import 'package:flutter/material.dart';
 import 'basic_widgets/image_widget.dart'; // Pastikan nama file sesuai
 
@@ -211,6 +211,95 @@ class MyApp extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}*/
+import 'package:flutter/material.dart';
+import 'basic_widgets/image_widget.dart'; // Pastikan nama file sesuai
+import 'basic_widgets/loading_cupertino.dart'; // Import file LoadingCupertino
+import 'basic_widgets/fab_widget.dart'; // Import file FAB
+import 'basic_widgets/scaffold_widget.dart'; // Import file ScaffoldWidget
+import 'basic_widgets/dialog_widget.dart'; // Import file DialogWidget
+import 'basic_widgets/text_field_widget.dart'; // Import file TextFieldWidget
+import 'basic_widgets/date_picker_widget.dart'; // Import file DatePickerWidget
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo Homepage',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Demo Homepage'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const MyImageWidget(),
+              const SizedBox(height: 20),
+              const Text(
+                'Halo!! Nama saya Lintang Aprillya Sari',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Selamat datang di aplikasi saya!',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DialogWidget(); // Menampilkan DialogWidget
+                    },
+                  );
+                },
+                child: const Text('Show Dialog'),
+              ),
+              const SizedBox(height: 20),
+              const LoadingCupertinoWidget(), // Menampilkan LoadingCupertino
+              const SizedBox(height: 20),
+              const MyFabWidget(), // Menampilkan FAB
+              const SizedBox(height: 20),
+              const TextFieldWidget(), // Menampilkan TextFieldWidget
+              const SizedBox(height: 20),
+              const DatePickerWidget(), // Menampilkan DatePickerWidget
+            ],
           ),
         ),
       ),
