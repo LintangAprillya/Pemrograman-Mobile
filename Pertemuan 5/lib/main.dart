@@ -147,7 +147,7 @@ class MyApp extends StatelessWidget {
   }
 }*/
 
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'basic_widgets/date_picker_widget.dart'; // Import file
 
 void main() {
@@ -162,6 +162,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Contoh Date Picker',
       home: const DatePickerWidget(), // Tampilkan DatePickerWidget
+    );
+  }
+}*/
+
+import 'package:flutter/material.dart';
+import 'my_image_widget.dart'; // Ganti dengan nama file yang sesuai jika perlu
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My Image App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('My Image App'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const MyImageWidget(),
+              const SizedBox(height: 20), // Jarak antara gambar dan teks
+              const Text(
+                'Lintang Aprillya Sari',
+                style: TextStyle(fontSize: 24), // Gaya teks
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

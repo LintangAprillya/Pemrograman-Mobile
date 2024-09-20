@@ -167,7 +167,7 @@ Untuk main.dartnya juga sudah saya sesuaikan
 (![Praktikum 3 - Langkah 2](<./picture/js5_praktikum3_langkah2(5).png>)
 )
 
-Dengan mengubah beberapa source code dalam file semua sudah berhasil, dan hasil outputnya diatas
+Dengan mengubah beberapa source code dalam file semua sudah berhasil, dan hasil outputnya diatas. Disini, untuk penamaannya saya letakkan di header sebagai pembeda dengan teman - teman yang lain.
 
 ### Praktikum 4 : Menerapkan Widget Material Design dan iOS Cupertino
 
