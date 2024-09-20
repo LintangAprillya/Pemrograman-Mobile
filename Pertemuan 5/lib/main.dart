@@ -167,7 +167,7 @@ class MyApp extends StatelessWidget {
 }*/
 
 import 'package:flutter/material.dart';
-import 'my_image_widget.dart'; // Ganti dengan nama file yang sesuai jika perlu
+import 'basic_widgets/image_widget.dart'; // Pastikan nama file sesuai
 
 void main() {
   runApp(const MyApp());
@@ -179,22 +179,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Image App',
+      title: 'Flutter Demo Homepage',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('My Image App'),
+          title: const Text('Flutter Demo Homepage'),
+          backgroundColor: Colors.deepPurple, // Warna app bar
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const MyImageWidget(),
-              const SizedBox(height: 20), // Jarak antara gambar dan teks
-              const Text(
-                'Lintang Aprillya Sari',
-                style: TextStyle(fontSize: 24), // Gaya teks
-              ),
-            ],
+        body: Container(
+          color: Colors.lightBlue[50], // Warna latar belakang
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const MyImageWidget(),
+                const SizedBox(height: 20), // Jarak antara gambar dan teks
+                const Text(
+                  'Halo!! Nama saya Lintang Aprillya Sari',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold, // Gaya teks tebal
+                    color: Colors.deepPurple, // Warna teks
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Selamat datang di aplikasi saya!',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black54, // Warna teks lebih lembut
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

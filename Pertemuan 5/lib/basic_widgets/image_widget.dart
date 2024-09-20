@@ -5,10 +5,6 @@ class MyImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Image(
-      image: AssetImage("assets/logo_polinema.png"), // Pastikan path-nya benar
-      width: 100, // Anda dapat mengatur ukuran gambar di sini
-      height: 100,
-    );
+    return const Image(image: AssetImage("logo_polinema.png"));
   }
 }
