@@ -26,9 +26,9 @@ NIM : 2241720231
 
     **Jawab :**
 
-    (![Praktikum 1 - Langkah 1].(/picture/js6_praktikum1_langkah1(1).png))
-    (![Praktikum 1 - Langkah 1].(/picture/js6_praktikum1_langkah1(2).png))
-    (![Praktikum 1 - Langkah 1].(/picture/js6_praktikum1_langkah1(3).png))
+    (![Praktikum 1 - Langkah 1](./picture/js6_praktikum1_langkah1(1).png))
+    (![Praktikum 1 - Langkah 1](./picture/js6_praktikum1_langkah1(2).png))
+    (![Praktikum 1 - Langkah 1](./picture/js6_praktikum1_langkah1(3).png))
 
     Jadi, disini saya membuat folder dengan nama layout_flutter.
 
