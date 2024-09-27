@@ -38,7 +38,7 @@ NIM : 2241720231
 
     Buka file main.dart lalu ganti dengan kode berikut. Isi nama dan NIM Anda di text title.
 
-(![Praktikum 1 - Langkah 2](./picture/js6_praktikum1_langkah2.png)
+(![Praktikum 1 - Langkah 2](<./picture/js6_praktikum1_langkah2.png>)
 )
 
     Disini saya mengisikan "Lintang Aprillya Sari - 2241720231" pada text titlenya
