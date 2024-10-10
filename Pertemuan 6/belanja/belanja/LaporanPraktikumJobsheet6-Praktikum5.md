@@ -752,3 +752,7 @@ import 'package:belanja/pages/item_page.dart';
   <source src="./picture/video.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+output :
+
+![Alt Text](./picture/video.gif)
