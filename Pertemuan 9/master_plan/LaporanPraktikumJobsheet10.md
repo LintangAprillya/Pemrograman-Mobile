@@ -18,6 +18,8 @@ NIM : 2241720231
 
 Buatlah sebuah project flutter baru dengan nama master_plan di folder src week-11 repository GitHub Anda. Lalu buatlah susunan folder dalam project seperti gambar berikut ini.
 
+![Praktikum 1 - Langkah 1](./picture/prak1_langkah1.png)
+
 #### > Langkah 2 : Membuat model task.dart
 
 Praktik terbaik untuk memulai adalah pada lapisan data (data layer). Ini akan memberi Anda gambaran yang jelas tentang aplikasi Anda, tanpa masuk ke detail antarmuka pengguna Anda. Di folder model, buat file bernama task.dart dan buat class Task. Class ini memiliki atribut description dengan tipe data String dan complete dengan tipe data Boolean, serta ada konstruktor. Kelas ini akan menyimpan data tugas untuk aplikasi kita. Tambahkan kode berikut:
@@ -172,6 +174,10 @@ Dari langkah 8, kita butuh ListTile untuk menampilkan setiap nilai dari plan.tas
 
 Run atau tekan F5 untuk melihat hasil aplikasi yang Anda telah buat. Capture hasilnya untuk soal praktikum nomor 4.
 
+![Praktikum 1 - Langkah 1](./picture/prak1_langkah9.png)
+
+![Alt Text](./picture/prak1_langkah9.gif)
+
 #### > Langkah 10 : Tambah Scroll Controller
 
 Anda dapat menambah tugas sebanyak-banyaknya, menandainya jika sudah beres, dan melakukan scroll jika sudah semakin banyak isinya. Namun, ada salah satu fitur tertentu di iOS perlu kita tambahkan. Ketika keyboard tampil, Anda akan kesulitan untuk mengisi yang paling bawah. Untuk mengatasi itu, Anda dapat menggunakan ScrollController untuk menghapus focus dari semua TextField selama event scroll dilakukan. Pada file plan_screen.dart, tambahkan variabel scroll controller di class State tepat setelah variabel plan.
@@ -201,6 +207,7 @@ Tambahkan controller dan keyboard behavior pada ListView di method \_buildList s
     TargetPlatform.iOS
             ? ScrollViewKeyboardDismissBehavior.onDrag
             : ScrollViewKeyboardDismissBehavior.manual,
+    )
 
 #### > Langkah 13 : Terakhir, tambah method dispose()
 
@@ -220,13 +227,40 @@ Lakukan Hot restart (bukan hot reload) pada aplikasi Flutter Anda. Anda akan mel
 
 #### > 1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki.
 
+Jawab :
+![Praktikum 1 - Langkah 1](./picture/prak1_langkah9.png)
+
 #### > 2. Jelaskan maksud dari langkah 4 pada praktikum tersebut! Mengapa dilakukan demikian?
+
+Jawab :
+
+Langkah 4 dalam praktikum ini melibatkan pembuatan file data_layer.dart untuk mengorganisasi dan menyederhanakan proses impor model dalam aplikasi. Dengan mengekspor kedua model, yaitu plan.dart dan task.dart, melalui satu file ini, pengelolaan struktur kode menjadi lebih teratur dan ringkas. Hal ini sangat berguna ketika aplikasi berkembang, karena memudahkan pengembang dalam mengimpor model-model tersebut tanpa harus menulis beberapa baris impor di setiap file yang membutuhkannya, sehingga meningkatkan keterbacaan dan efisiensi kode.
 
 #### > 3. Mengapa perlu variabel plan di langkah 6 pada praktikum tersebut? Mengapa dibuat konstanta ?
 
+Jawab :
+
+Variabel plan di langkah 6 pada praktikum tersebut diperlukan untuk menyimpan dan mengelola data terkait rencana (task) dalam aplikasi. Dengan variabel ini, aplikasi dapat mengakses informasi mengenai nama dan daftar tugas yang terdapat dalam Plan, yang merupakan model data yang telah didefinisikan sebelumnya.
+
+Dibuatnya variabel plan sebagai konstanta (const Plan()) memungkinkan untuk memastikan bahwa instansiasi awal dari objek Plan tidak akan berubah setelah dibuat. Ini berarti bahwa ketika Plan dibuat, data yang disimpan di dalamnya bersifat tetap dan tidak dapat dimodifikasi, kecuali melalui mekanisme yang disediakan dalam aplikasi (misalnya, dengan menambah atau mengubah tugas). Dengan menggunakan konstanta, ini juga dapat membantu mengurangi kemungkinan kesalahan yang dapat terjadi akibat modifikasi tidak disengaja pada objek tersebut, serta memberikan kejelasan bahwa objek ini memiliki keadaan awal yang tetap.
+
 #### > 4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
 
+Jawab :
+
+![Alt Text](./picture/prak1_langkah9.gif)
+
+![Praktikum 1 - Langkah 9](./picture/prak1_langkah9.png)
+
+langkah sembilan kita membuat \_buildTaskFile, yaitu sebuah widget yang akan digunakan sebagai template task yang bersifat dinamis tergantung dari data yang ditampilkan. Widget ini menggunakan ListTile dimana terdapat checkbox pada leading ListTile, dan TextFormField untuk titlenya. Widget ini nantinya akan dipanggil pada widget \_buildList, dan akan dilooping sebanyak data yang ada.
+
 #### > 5. Apa kegunaan method pada Langkah 11 dan 13 dalam lifecyle state ?
+
+Jawab :
+
+Pada langkah 11, method initState() digunakan untuk menginisialisasi variabel scrollController saat widget pertama kali dibuat. Dalam konteks lifecycle state, initState() adalah titik awal di mana konfigurasi yang memerlukan konteks (seperti menambahkan listener) dilakukan. Dalam hal ini, listener ditambahkan untuk menghapus fokus dari semua TextField ketika pengguna menggulir daftar. Ini berguna untuk memastikan bahwa keyboard tidak menghalangi tampilan pengguna saat mereka ingin berinteraksi dengan item di bagian bawah daftar.
+
+Sementara itu, pada langkah 13, method dispose() berfungsi untuk membersihkan sumber daya yang digunakan oleh scrollController ketika widget tidak lagi diperlukan. Dalam lifecycle state, dispose() dipanggil sebelum widget dihapus dari tree dan merupakan tempat yang tepat untuk melepaskan sumber daya seperti controller, listeners, dan event handlers. Ini penting untuk menghindari kebocoran memori, karena jika sumber daya tidak dibersihkan, aplikasi dapat mengalami penurunan kinerja seiring waktu. Dengan demikian, kedua method ini berperan penting dalam mengelola siklus hidup widget dengan baik dan menjaga efisiensi aplikasi.
 
 #### > 6. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
 
@@ -374,15 +408,39 @@ Terakhir, tambahkan widget SafeArea dengan berisi completenessMessage pada akhir
 
 Akhirnya, run atau tekan F5 jika aplikasi belum running. Tidak akan terlihat perubahan pada UI, namun dengan melakukan langkah-langkah di atas, Anda telah menerapkan cara memisahkan dengan baik antara view dan model. Ini merupakan hal terpenting dalam mengelola state di aplikasi Anda.
 
+Jawab :
+
+![Alt Text](./picture/prak2_langkah9.gif)
+
+![Praktikum 2 - Langkah 9](./picture/prak2_langkah9.png)
+
 ### Tugas Praktikum 2 : InheritedWidget
 
 #### > 1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
 
 #### > 2. Jelaskan mana yang dimaksud InheritedWidget pada langkah 1 tersebut! Mengapa yang digunakan InheritedNotifier?
 
+Jawab :
+
+InheritedWidget adalah sebuah widget yang memungkinkan data untuk diteruskan ke widget turunannya dalam pohon widget. Hal ini memudahkan komunikasi antara bagian-bagian aplikasi yang memerlukan akses ke data tertentu tanpa perlu mengoper data melalui constructor dari widget ke widget secara berulang. Dalam praktikum ini, InheritedNotifier digunakan karena ia adalah turunan dari InheritedWidget yang dapat memberi tahu widget yang bergantung padanya ketika data di dalamnya berubah. Dengan menggunakan InheritedNotifier, perubahan pada data dapat direspons secara otomatis oleh widget yang memerlukan data tersebut, sehingga menjadikan aplikasi lebih reaktif dan efisien.
+
 #### > 3. Jelaskan maksud dari method di langkah 3 pada praktikum tersebut! Mengapa dilakukan demikian?
 
+Jawab :
+
+Pada langkah 3, ditambahkan dua method dalam class Plan untuk menghitung jumlah tugas yang telah diselesaikan dan untuk menghasilkan pesan mengenai kelengkapan tugas. Method ini bertujuan untuk memudahkan pengelolaan dan penyajian data terkait status tugas dalam aplikasi. Dengan menambahkan method ini, aplikasi dapat dengan mudah menampilkan berapa banyak tugas yang telah diselesaikan dibandingkan dengan total tugas yang ada, yang penting untuk memberikan umpan balik visual kepada pengguna tentang kemajuan mereka.
+
 #### > 4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
+
+Jawab :
+
+![Alt Text](./picture/prak1_langkah9.gif)
+
+![Praktikum 2 - Langkah 9](./picture/prak1_langkah9.png)
+
+Ketika user menambahkan Task, maka akan muncul ListTile baru, namun task selesai masih bernilai 0 dari keseluruhan task. Ketika salah satu task diklik checkboxnya menjadi true, maka comnpleted task akan bertambah.
+
+Dalam langkah 9, footer aplikasi ditambahkan menggunakan widget SafeArea yang menampilkan pesan kelengkapan tugas dari model Plan. Dengan demikian, pengguna dapat dengan mudah melihat progres mereka terhadap tugas yang telah mereka buat, meningkatkan interaksi dan kepuasan pengguna.
 
 #### > 5. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
 
@@ -651,12 +709,36 @@ Tambahkan widget seperti kode berikut.
 
 Terakhir, run atau tekan F5 untuk melihat hasilnya jika memang belum running. Bisa juga lakukan hot restart jika aplikasi sudah running. Maka hasilnya akan seperti gambar berikut ini.
 
+Jawab :
+
+![Alt Text](./picture/prak3_langkah14.gif)
+
+![Praktikum 3 - Langkah 14](./picture/prak3_langkah14.png)
+
 ### Tugas Praktikum 3 : State di Multiple Screens
 
 #### > 1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
 
+Jawab :
+
+![Alt Text](./picture/prak3_langkah14.gif)
+
+![Praktikum 3 - Langkah 14](./picture/prak3_langkah14.png)
+
 #### > 2. Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!
 
+Jawab :
+
+Diagram struktur widget di sebelah kiri menggambarkan bagaimana aplikasi terlihat saat user sedang membuat rencana baru. Saat berada di layar pencipta rencana (PlanCreatorScreen), user dapat berinteraksi dengan berbagai elemen seperti TextField dan Expanded di dalam sebuah Column. Penyusunan data rencana dan tampilan daftar rencana diatur oleh PlanProvider, yang merupakan bagian dari widget tree di bawah MaterialApp. Saat pengguna berpindah ke tampilan utama aplikasi (PlanScreen) di sebelah kanan, mereka dapat melihat daftar rencana yang telah dibuat sebelumnya. Data rencana masih dikelola oleh PlanProvider yang tetap berada di root widget tree untuk memfasilitasi akses lintas tampilan. Struktur tampilan menggunakan Column, Expanded, dan SafeArea untuk menyusun elemen-elemen, termasuk daftar rencana yang ditampilkan melalui ListView. Selain itu, terdapat elemen teks di bawah area aman yang mungkin menampilkan pesan terkait kelengkapan rencana.
+
 #### > 3. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
+
+Jawab :
+
+![Alt Text](./picture/prak3_langkah14.gif)
+
+![Praktikum 3 - Langkah 14](./picture/prak3_langkah14.png)
+
+Di screen ini user dapat membuat plan yang ingin dibuat. Kemudian jika salah satu plan diklik maka akan menuju ke detail dari plan tersebut, dimana didalamnya user dapat membuat task-task yang diinginkan.
 
 #### > 4. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
