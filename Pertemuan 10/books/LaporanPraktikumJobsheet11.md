@@ -63,6 +63,8 @@ Tambahkan method ini ke dalam class \_FuturePageState yang berguna untuk mengamb
 
 - Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika menampilkan data JSON, maka Anda telah berhasil. Lakukan capture milik Anda dan tulis di README pada laporan praktikum. Lalu lakukan commit dengan pesan "W12: Soal 2".
 
+![Praktikum 1 - soal2](<./picture/p1_soal2(2).png>)
+
 #### Langkah 5 : Tambah kode di ElevatedButton
 
 Tambahkan kode pada onPressed di ElevatedButton seperti berikut. Lakukan run aplikasi Flutter Anda. Anda akan melihat tampilan akhir seperti gambar berikut. Jika masih terdapat error, silakan diperbaiki hingga bisa running.
