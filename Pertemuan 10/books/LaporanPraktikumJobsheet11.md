@@ -67,12 +67,25 @@ Tambahkan method ini ke dalam class \_FuturePageState yang berguna untuk mengamb
 
 #### Langkah 5 : Tambah kode di ElevatedButton
 
-Tambahkan kode pada onPressed di ElevatedButton seperti berikut. Lakukan run aplikasi Flutter Anda. Anda akan melihat tampilan akhir seperti gambar berikut. Jika masih terdapat error, silakan diperbaiki hingga bisa running.
+Tambahkan kode pada onPressed di ElevatedButton seperti berikut.
+
+![Praktikum 1 - Langkah 5](./picture/p1_lkh5.png)
+
+Lakukan run aplikasi Flutter Anda. Anda akan melihat tampilan akhir seperti gambar berikut. Jika masih terdapat error, silakan diperbaiki hingga bisa running.
 
 **Soal 3**
 
-Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
-Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 3".
+- Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
+  Jawab :
+  - substring :
+    Fungsi dari substring disini adalah untuk membatasi jumlah karakter yang ditampilkan dengan maksimal 450 karakter
+  - catchError :
+    Fungsi dari catchError disini adalah untuk menemukan error dan menampilkan pesan error 'An error acccured' jika terjadi error
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 3".
+
+  ![Alt Text](./picture/p1_lkh5.gif)
+
+  ![Praktikum 1 - Langkah 5](<./picture/p1_lkh5(2).png>)
 
 ### Praktikum 2 : Menggunakan await/async untuk Menghindari Callbacks
 
