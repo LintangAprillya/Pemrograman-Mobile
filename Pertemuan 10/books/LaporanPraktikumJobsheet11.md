@@ -347,9 +347,19 @@ Tambahkan widget loading seperti kode berikut. Lalu hot restart, perhatikan peru
 
 Buka file geolocation.dart kemudian ganti isi method dengan kode ini.
 
+Future<Position> getPosition() async {
+await Future.delayed(const Duration(seconds: 3));
+await Geolocator.requestPermission();
+await Geolocator.isLocationServiceEnabled();
+Position position = await Geolocator.getCurrentPosition();
+return position;
+}
+
 #### Langkah 2 : Tambah variabel
 
 Tambah variabel ini di class \_LocationScreenState
+
+Future<Position>? position;
 
 #### Langkah 3 : Tambah initState()
 
@@ -360,6 +370,10 @@ Tambah method ini dan set variabel position
 Ketik kode berikut dan sesuaikan. Kode lama bisa Anda comment atau hapus.
 
 **Soal 13**
+
+![Alt Text](./picture/p7_lkh4.gif)
+
+Perbedaan UI dengan praktikum sebelumnya adalah bahwa FutureBuilder menyediakan tampilan yang lebih efisien, rapi, dan reaktif. Hal ini karena FutureBuilder secara otomatis memperbarui UI berdasarkan status Future, seperti waiting atau done, tanpa perlu setState secara manual.
 
 - Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 13".
@@ -373,6 +387,10 @@ Tambahkan kode berikut untuk menangani ketika terjadi error. Kemudian hot restar
 
 - Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".
+
+![Alt Text](./picture/p7_lkh5.gif)
+
+Pada langkah ini, jika terjadi error, FutureBuilder menampilkan pesan error secara otomatis. UI sekarang memiliki kemampuan untuk menampilkan pesan "Something terrible happened!" jika ada masalah pada proses pengambilan data lokasi, membuat aplikasi lebih informatif dan ramah pengguna.
 
 ### Praktikum 8 : Navigation Route dengan Future Function
 
