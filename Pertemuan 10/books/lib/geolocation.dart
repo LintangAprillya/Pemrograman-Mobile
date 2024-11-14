@@ -1,77 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
-class LocationScreen extends StatefulWidget {
-  const LocationScreen({super.key});
+class NavigationFirst extends StatefulWidget {
+  const NavigationFirst({super.key});
 
   @override
-  State<LocationScreen> createState() => _LocationScreenState();
+  State<NavigationFirst> createState() => _NavigationFirstState();
 }
 
-class _LocationScreenState extends State<LocationScreen> {
-  String myPosition = '';
-  Future<Position>? position; // Tambah Variabel
-  @override
-  void initState() {
-    super.initState();
-    position = getPosition();
+class _NavigationFirstState extends State<NavigationFirst> {
+  Color color = Colors.blue.shade700; // Warna awal
+
+  // Method untuk navigasi ke halaman kedua dan mengambil warna
+  Future _navigateAndGetColor(BuildContext context) async {
+    // Mengambil warna dari halaman kedua
+    color = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NavigationSecond()),
+        ) ??
+        Colors.blue; // Jika tidak ada warna yang dipilih, gunakan warna default
+
+    // Memperbarui state dengan warna yang baru
+    setState(() {});
   }
 
-  //   getPosition().then((Position myPos) {
-  //     myPosition =
-  //         'Latitude: ${myPos.latitude.toString()} - Longitude:${myPos.longitude.toString()}';
-  //     setState(() {
-  //       myPosition = myPosition;
-  //   });
-  // });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lintangs Current Location')),
+      backgroundColor: color, // Menggunakan warna yang dipilih
+      appBar: AppBar(
+        title: const Text('Lintang Navigation First Screen'),
+      ),
       body: Center(
-        child: FutureBuilder<Position>(
-          future: position,
-          builder: (BuildContext, AsyncSnapshot<Position> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.connectionState == ConnectionState.done) {
-              return Text(snapshot.data.toString());
-            } else if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasError) {
-                return const Text('Something terrible happened!');
-              }
-              return Text(snapshot.data.toString());
-            } else {
-              return const Text('');
-            }
+        child: ElevatedButton(
+          child: const Text('Change Color'),
+          onPressed: () {
+            _navigateAndGetColor(
+                context); // Memanggil method untuk navigasi dan mendapatkan warna
           },
         ),
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   final myWidget = myPosition == ''
-  //   ? const CircularProgressIndicator()
-  //   : Text(myPosition);
+}
 
-  //     return Scaffold(
-  //     appBar: AppBar(title: const Text('Lintangs Current Location')),
-  //     body: Center(child:myWidget),
-  //   );
-  // }
+// Halaman kedua untuk memilih warna
+class NavigationSecond extends StatelessWidget {
+  const NavigationSecond({super.key});
 
-  Future<Position> getPosition() async {
-    await Geolocator.isLocationServiceEnabled();
-    await Future.delayed(const Duration(seconds: 3));
-    Position position = await Geolocator.getCurrentPosition();
-    return position;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Second Screen')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              child: const Text('Purple'),
+              onPressed: () {
+                Navigator.pop(
+                    context, Colors.purple); // Kembali dengan warna ungu
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Pink'),
+              onPressed: () {
+                Navigator.pop(
+                    context, Colors.pink); // Kembali dengan warna pink
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Teal'),
+              onPressed: () {
+                Navigator.pop(
+                    context, Colors.teal); // Kembali dengan warna teal
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
-//  Future<Position> getPosition() async {
-//     await Geolocator.requestPermission();
-//     await Geolocator.isLocationServiceEnabled();
-//     await Future.delayed(const Duration(seconds: 3));
-//     Position? position = await Geolocator.getCurrentPosition();
-//     return position;
-//   }
 }

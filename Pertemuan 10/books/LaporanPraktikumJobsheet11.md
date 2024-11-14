@@ -408,9 +408,18 @@ Buatlah file baru ini di project lib Anda.
 - Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.
 - Silakan ganti dengan warna tema favorit Anda.
 
+![Praktikum 6 - Langkah 5](./picture/p8_lkh2.png)
+
 #### Langkah 3 : Tambah method di class \_NavigationFirstState
 
 Tambahkan method ini.
+
+Future \_navigateAndGetColor(BuildContext context) async {
+color = await Navigator.push(context,
+MaterialPageRoute(builder: (context) => const NavigationSecond()),) ?? Colors.blue;
+setState(() {});
+});
+}
 
 #### Langkah 4 : Buat file baru navigation_second.dart
 
@@ -418,9 +427,13 @@ Buat file baru ini di project lib Anda. Silakan jika ingin mengelompokkan view m
 
 #### Langkah 5 : Buat class NavigationSecond dengan StatefulWidget
 
+![Praktikum 6 - Langkah 5](./picture/p8_lkh5.png)
+
 #### Langkah 6 : Edit main.dart
 
 Lakukan edit properti home.
+
+home: const NavigationFirst(),
 
 #### Langkah 8: Run
 
@@ -431,6 +444,8 @@ Lakukan run, jika terjadi error silakan diperbaiki.
 - Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
 - Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 16".
+
+![Alt Text](./picture/p8.gif)
 
 Hasilnya akan seperti gambar berikut ini.
 
