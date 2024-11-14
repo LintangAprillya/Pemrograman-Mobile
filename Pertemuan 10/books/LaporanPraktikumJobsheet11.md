@@ -210,9 +210,13 @@ Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan co
 
 Tambahkan method ini ke dalam class \
 
+![Praktikum 4 - Langkah 1](./picture/p4_lkh1.png)
+
 #### Langkah 2 : Edit onPressed()
 
 Anda bisa hapus atau comment kode sebelumnya, kemudian panggil method dari langkah 1 tersebut.
+
+returnFG();
 
 #### Langkah 3 : Run
 
@@ -221,6 +225,8 @@ Anda akan melihat hasilnya dalam 3 detik berupa angka 6 lebih cepat dibandingkan
 **Soal 7**
 
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 7".
+
+![Alt Text](./picture/p4_lkh3.gif)
 
 #### Langkah 4 : Ganti variabel futureGroup
 
