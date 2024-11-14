@@ -373,6 +373,8 @@ Ketik kode berikut dan sesuaikan. Kode lama bisa Anda comment atau hapus.
 
 ![Alt Text](./picture/p7_lkh4.gif)
 
+Jawab :
+
 Perbedaan UI dengan praktikum sebelumnya adalah bahwa FutureBuilder menyediakan tampilan yang lebih efisien, rapi, dan reaktif. Hal ini karena FutureBuilder secara otomatis memperbarui UI berdasarkan status Future, seperti waiting atau done, tanpa perlu setState secara manual.
 
 - Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
@@ -389,6 +391,7 @@ Tambahkan kode berikut untuk menangani ketika terjadi error. Kemudian hot restar
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".
 
 ![Alt Text](./picture/p7_lkh5.gif)
+Jawab :
 
 Pada langkah ini, jika terjadi error, FutureBuilder menampilkan pesan error secara otomatis. UI sekarang memiliki kemampuan untuk menampilkan pesan "Something terrible happened!" jika ada masalah pada proses pengambilan data lokasi, membuat aplikasi lebih informatif dan ramah pengguna.
 
