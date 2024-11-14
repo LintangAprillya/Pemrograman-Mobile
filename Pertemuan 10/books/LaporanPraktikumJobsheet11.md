@@ -141,13 +141,18 @@ Langkah 2 Kode di atas adalah sebuah fungsi asynchronous bernama count() yang di
 
 Pastikan telah impor package async berikut.
 
+import 'package:async/async.dart';
+
 #### Langkah 2 : Tambahkan variabel dan method
 
 Tambahkan variabel late dan method di class \_FuturePageState seperti ini.
 
+![Praktikum 3 - Langkah 2](./picture/p3_lkh2.png)
+
 #### Langkah 3 : Ganti isi kode onPressed()
 
 Tambahkan kode berikut pada fungsi onPressed(). Kode sebelumnya bisa Anda comment.
+![Praktikum 3 - Langkah 3](./picture/p3_lkh3.png)
 
 #### Langkah 4 :
 
@@ -157,6 +162,16 @@ Terakhir, run atau tekan F5 untuk melihat hasilnya jika memang belum running. Bi
 
 Jelaskan maksud kode langkah 2 tersebut!
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 5".
+
+Jawab :
+
+- Variabel completer Variabel completer adalah variabel late dari tipe Completer. Variabel ini digunakan untuk menyimpan hasil dari perhitungan angka 42.
+- Method getNumber() Method getNumber() mengembalikan nilai dari variabel completer. Method ini memiliki dua langkah: a. Inisialisasi variabel completer dengan nilai baru. b. Memanggil method calculate() untuk menghitung angka 42.
+- Method calculate() Method calculate() menggunakan Future.delayed() untuk menunggu 5 detik sebelum menyelesaikan perhitungan angka 42. Setelah 5 detik, method ini akan memanggil method completer.complete() untuk menyelesaikan perhitungan dan mengembalikan nilai 42 ke variabel completer
+
+![Alt Text](./picture/p3_lkh4.gif)
+
+![Praktikum 3 - Langkah 3](./picture/p3_lkh4.png)
 
 #### Langkah 5 : Ganti method calculate()
 
