@@ -457,7 +457,11 @@ Buat file dart baru di folder lib project Anda.
 
 #### Langkah 2 : Isi kode navigation_dialog.dart
 
+![Praktikum 6 - Langkah 5](./picture/p9_lkh2.png)
+
 #### Langkah 3 : Tambah method async
+
+![Praktikum 6 - Langkah 5](./picture/p9_lkh3.png)
 
 #### Langkah 4 : Panggil method di ElevatedButton
 
@@ -474,3 +478,5 @@ Coba ganti warna background dengan widget dialog tersebut. Jika terjadi error, s
 - Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
 - Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 17".
+
+![Alt Text](./picture/p9.gif)
