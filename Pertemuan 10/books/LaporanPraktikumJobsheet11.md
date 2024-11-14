@@ -98,13 +98,19 @@ Ada alternatif penggunaan Future yang lebih clean, mudah dibaca dan dirawat, yai
 
 Tambahkan tiga method berisi kode seperti berikut di dalam class \_FuturePageState.
 
+![Praktikum 2 - Langkah 1](./picture/p2_lk12.png)
+
 #### Langkah 2 : Tambah method count()
 
 Lalu tambahkan lagi method ini di bawah ketiga method sebelumnya.
 
+![Praktikum 2 - Langkah 2](./picture/p2_lk12.png)
+
 #### Langkah 3: Panggil count()
 
 Lakukan comment kode sebelumnya, ubah isi kode onPressed() menjadi seperti berikut.
+
+![Praktikum 2 - Langkah 3](./picture/p2_lkh3.png)
 
 #### Langkah 4: Run
 
@@ -114,6 +120,20 @@ Akhirnya, run atau tekan F5 jika aplikasi belum running. Maka Anda akan melihat 
 
 Jelaskan maksud kode langkah 1 dan 2 tersebut!
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 4".
+
+Jawab :
+
+Langkah 1 Kode di atas adalah kode Dart yang terdiri dari tiga fungsi asynchronous, yaitu returnOneAsync(), returnTwoAsync(), dan returnThreeAsync(). Ketiga fungsi ini mengembalikan nilai int dan menggunakan Future.delayed() untuk menunda eksekusi selama 3 detik. Berikut adalah penjelasan masing-masing fungsi:
+
+- returnOneAsync() Fungsi ini mengembalikan nilai 1 setelah 3 detik.
+- returnTwoAsync() Fungsi ini mengembalikan nilai 2 setelah 3 detik.
+- returnThreeAsync() Fungsi ini mengembalikan nilai 3 setelah 3 detik.
+
+Langkah 2 Kode di atas adalah sebuah fungsi asynchronous bernama count() yang digunakan untuk menghitung jumlah dari tiga fungsi asynchronous lainnya, yaitu returnOneAsync(), returnTwoAsync(), dan returnThreeAsync(). Fungsi count() ini mengembalikan Future, yang berarti bahwa eksekusinya tidak akan memblokir kode lainnya.
+
+![Alt Text](./picture/p2_lkh4.gif)
+
+![Praktikum 2 - Langkah 4](./picture/p2_lkh4.png)
 
 ### Praktikum 3 : Menggunakan Completer di Future
 
