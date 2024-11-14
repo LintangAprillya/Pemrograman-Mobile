@@ -232,8 +232,18 @@ Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan co
 
 Anda dapat menggunakan FutureGroup dengan Future.wait seperti kode berikut.
 
+final futures = Future.wait<int>([
+returnOneAsync(),
+returnTwoAsync(),
+returnThreeAsync(),
+]);
+
 **Soal 8**
 Jelaskan maksud perbedaan kode langkah 1 dan 4!
+
+Jawab :
+
+Perbedaan kode langkah 1 dan kode langkah 4 adalah pada penggunaan variabel futureGroup. Pada langkah 1, variabel futureGroup digunakan untuk menampung FutureGroup. FutureGroup adalah sebuah objek yang dapat digunakan untuk mengelompokkan beberapa Future bersama-sama. Sedangkan pada langkah 4, variabel futureGroup diganti dengan Future.wait(). Future.wait() adalah sebuah fungsi yang dapat digunakan untuk menunggu beberapa Future selesai dijalankan.
 
 ### Praktikum 5 : Menangani Respon Error pada Async Code
 
