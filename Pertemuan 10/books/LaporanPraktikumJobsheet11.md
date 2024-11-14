@@ -251,9 +251,16 @@ Perbedaan kode langkah 1 dan kode langkah 4 adalah pada penggunaan variabel futu
 
 Tambahkan method ini ke dalam class \_FuturePageState
 
+Future returnError() async {
+await Future.delayed(const Duration(seconds: 2));
+throw Exception('Something terrible happened!');
+}
+
 #### Langkah 2 : ElevatedButton
 
 Ganti dengan kode berikut
+
+![Praktikum 5 - Langkah 2](./picture/p5_lkh2.png)
 
 #### Langkah 3 : Run
 
@@ -264,6 +271,8 @@ Pada bagian debug console akan melihat teks Complete seperti berikut.
 **Soal 9**
 
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 9".
+
+![Alt Text](./picture/p5_lkh3.gif)
 
 #### Langkah 4 : Tambah method handleError()
 
