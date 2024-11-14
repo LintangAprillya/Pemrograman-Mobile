@@ -177,14 +177,32 @@ Jawab :
 
 Gantilah isi code method calculate() seperti kode berikut, atau Anda dapat membuat calculate2()
 
+![Praktikum 3 - Langkah 5](./picture/p3_lkh5.png)
+
 #### Langkah 6 : Pindah ke onPressed()
 
 Ganti menjadi kode seperti berikut.
+
+![Praktikum 3 - Langkah 6](./picture/p3_lkh6.png)
 
 **Soal 6**
 
 Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!
 Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 6".
+
+Jawab :
+
+Langkah 5
+Pada langkah 5, kita mengganti isi dari method calculate(). Method calculate() sebelumnya menggunakan await Future.delayed(const Duration(seconds: 5)); untuk menunggu 5 detik sebelum menyelesaikan perhitungan angka 42. Namun, method ini tidak menangani kesalahan yang mungkin terjadi saat menunggu 5 detik.
+
+Langkah 6
+Kode ini menggunakan then() dan catchError() untuk menangani hasil dari method getNumber(). Jika tidak terjadi kesalahan, maka method ini akan memanggil method setState() untuk memperbarui state dari widget. Jika terjadi kesalahan, maka method ini akan memanggil method setState() untuk memperbarui state dari widget dan menampilkan pesan kesalahan.
+
+Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 6".
+
+![Alt Text](./picture/p3_lkh6.gif)
+
+![Praktikum 3 - Langkah 3](./picture/p3_lkh4.png)
 
 ### Praktikum 4 : Memanggil Future secara Paralel
 
