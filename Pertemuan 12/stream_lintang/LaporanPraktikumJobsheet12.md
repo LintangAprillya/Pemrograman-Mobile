@@ -94,21 +94,32 @@ Tambahkan kode berikut ini.
 
 Ketik kode impor file ini pada file main.dart
 
+    import 'stream.dart';
+
 #### > Langkah 8 : Tambah variabel
 
 Ketik dua properti ini di dalam class \_StreamHomePageState
+
+    Color bgColor = Colors.blueGrey;
+    late ColorStream colorStream;
 
 #### > Langkah 9 : Tambah method changeColor()
 
 Tetap di file main, Ketik kode seperti berikut
 
+![Praktikum 1 - Langkah 1](./picture/p1_lkh711.png)
+
 #### > Langkah 10 : Lakukan override initState()
 
 Ketika kode seperti berikut
 
+![Praktikum 1 - Langkah 1](./picture/p1_lkh711.png)
+
 #### > Langkah 11 : Ubah isi Scaffold()
 
 Sesuaikan kode seperti berikut.
+
+![Praktikum 1 - Langkah 1](./picture/p1_lkh711.png)
 
 #### > Langkah 12 : Run
 
@@ -117,6 +128,8 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat berubah warna bac
 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
 - Lakukan commit hasil jawaban Soal 4 dengan pesan "W13: Jawaban Soal 4"
+
+  ![Alt Text](./picture/p12.gif)
 
 #### > Langkah 13: Ganti isi method changeColor()
 
