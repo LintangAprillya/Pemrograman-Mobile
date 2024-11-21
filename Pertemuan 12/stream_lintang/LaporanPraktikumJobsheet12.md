@@ -137,6 +137,12 @@ Anda boleh comment atau hapus kode sebelumnya, lalu ketika kode seperti berikut.
 **Soal 5**
 
 - Jelaskan perbedaan menggunakan listen dan await for (langkah 9) !
+
+Jawab :
+
+    - listen: Digunakan untuk mendengarkan stream secara reaktif. Data diterima setiap kali stream memancarkan nilai baru, dan callback dijalankan untuk setiap nilai yang diterima. Ini lebih cocok untuk aplikasi yang mengharuskan UI diperbarui secara langsung.
+    - await for: Digunakan untuk menunggu setiap nilai dari stream secara berurutan dalam operasi asynchronous. Digunakan dalam konteks di mana Anda ingin memproses stream secara lebih terkontrol atau satu per satu dengan blok kode yang menunggu setiap nilai.
+
 - Lakukan commit hasil jawaban Soal 5 dengan pesan "W13: Jawaban Soal 5"
 
   Catatan: Stream di Flutter memiliki fitur yang powerfull untuk menangani data secara async. Stream dapat dimanfaatkan pada skenario dunia nyata seperti real-time messaging, unggah dan unduh file, tracking lokasi user, bekerja dengan data sensor IoT, dan lain sebagainya.

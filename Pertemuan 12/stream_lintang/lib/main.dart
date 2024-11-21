@@ -35,11 +35,18 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   // Langkah 9: Tambahkan method changeColor
   void changeColor() async {
-    await for (var eventColor in colorStream.getColors()) {
+    // await for (var eventColor in colorStream.getColors()) {
+    //   setState(() {
+    //     bgColor = eventColor;
+    //   });
+    // }
+
+    //langkah 13
+    colorStream.getColors().listen((eventColor) {
       setState(() {
         bgColor = eventColor;
       });
-    }
+    });
   }
 
   // Langkah 10: Override initState
