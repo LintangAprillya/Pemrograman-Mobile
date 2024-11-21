@@ -42,3 +42,8 @@ class NumberStream {
     controller.close();
   }
 }
+
+//p2 lkh 13
+addError() {
+  controller.sink.addError('error');
+}

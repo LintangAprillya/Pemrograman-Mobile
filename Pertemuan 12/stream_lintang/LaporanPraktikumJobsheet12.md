@@ -225,17 +225,31 @@ Jawab :
 
 Tambahkan method berikut ini.
 
+    addError() {
+        controller.sink.addError('Error');
+    }
+
 #### > Langkah 14 : Buka main.dart
 
 Tambahkan method onError di dalam class StreamHomePageState pada method listen di fungsi initState() seperti berikut ini.
+
+![Praktikum 1 - Langkah 1](./picture/p2_lkh14.png)
 
 #### > Langkah 15 : Edit method addRandomNumber()
 
 Lakukan comment pada dua baris kode berikut, lalu ketik kode seperti berikut ini.
 
+numberStream.addError();
+
 **Soal 7**
 
 - Jelaskan maksud kode langkah 13 sampai 15 tersebut!
+
+Jawab :
+
+    - Pada langkah 13, kita menambahkan method addError() ke kelas Stream. Method ini digunakan untuk menambahkan error ke stream.
+    - Pada langkah 15, kita mengedit method addRandomNumber(). Kita mengomentari dua baris kode yang sebelumnya digunakan untuk menambahkan random number ke stream. Kemudian, kita menambahkan kode baru untuk menambahkan error ke stream.
+
 - Kembalikan kode seperti semula pada Langkah 15, comment addError() agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 7".
 
