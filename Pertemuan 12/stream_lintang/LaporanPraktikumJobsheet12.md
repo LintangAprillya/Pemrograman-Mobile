@@ -259,11 +259,27 @@ Jawab :
 
 Tambahkan variabel baru di dalam class \_StreamHomePageState
 
+         late StreamTransformer transformer;
+
 #### > Langkah 2 : Tambahkan kode ini di initState
+
+        transformer = StreamTransformer<int, int>.fromHandlers(
+        handleData: (value, sink) {
+            sink.add(value * 10); // Perbaiki penulisan, seharusnya value * 10
+        },
+        handleError: (error, trace, sink) {
+            sink.add(-1);
+        },
+        handleDone: (sink) {
+            sink.close();
+        },
+        );
 
 #### > Langkah 3 : Tetap di initState
 
 Lakukan edit seperti kode berikut.
+
+![Praktikum 1 - Langkah 1](./picture/p2_34.png)
 
 #### > Langkah 4 : Run
 
@@ -272,7 +288,19 @@ Terakhir, run atau tekan F5 untuk melihat hasilnya jika memang belum running. Bi
 **Soal 8**
 
 - Jelaskan maksud kode langkah 1-3 tersebut!
+
+Jawab :
+
+    - Langkah 1 : Pada langkah ini, kita menambahkan variabel baru bernama transformer di dalam class _StreamHomePageState. Variabel ini akan digunakan untuk menyimpan objek StreamTransformer.
+
+    - Langkah 2: Pada langkah ini, kita menambahkan kode untuk membuat objek StreamTransformer. Objek ini akan digunakan untuk mengubah data yang diterima dari stream. Dalam kasus ini, kita akan mengubah data integer menjadi integer yang dikalikan dengan 10.
+
+    - Langkah 3: Pada langkah ini, kita melakukan edit kode di initState(). Kita menambahkan kode untuk menggunakan objek transformer untuk mengubah data yang diterima dari stream.
+
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+
+![Alt Text](./picture/p2.gif)
+
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 8".
 
 ### Praktikum 4 : Subscribe ke Stream Events
