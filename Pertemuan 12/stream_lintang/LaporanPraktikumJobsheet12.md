@@ -279,7 +279,7 @@ Tambahkan variabel baru di dalam class \_StreamHomePageState
 
 Lakukan edit seperti kode berikut.
 
-![Praktikum 1 - Langkah 1](./picture/p2_34.png)
+![Praktikum 1 - Langkah 1](./picture/p3_34.png)
 
 #### > Langkah 4 : Run
 
@@ -313,13 +313,19 @@ Tambahkan variabel berikut di class \_StreamHomePageState
 
 Edit kode seperti berikut ini.
 
+![Praktikum 1 - Langkah 1](./picture/p4_35.png)
+
 #### > Langkah 3 : Tetap di initState()
 
 Tambahkan kode berikut ini.
 
+![Praktikum 1 - Langkah 1](./picture/p4_35.png)
+
 #### > Langkah 4 : Tambah properti onDone()
 
 Tambahkan dibawahnya kode ini setelah onError
+
+![Praktikum 1 - Langkah 1](./picture/p4_35.png)
 
 #### > Langkah 5 : Tambah method baru
 
@@ -329,6 +335,8 @@ Ketik method ini di dalam class \_StreamHomePageState
 
 Jika method dispose() belum ada, Anda dapat mengetiknya dan dibuat override. Ketik kode ini didalamnya.
 
+    subscription.cancel();
+
 #### > Langkah 7 : Pindah ke method build()
 
 Tambahkan button kedua dengan isi kode seperti berikut ini.
@@ -336,6 +344,20 @@ Tambahkan button kedua dengan isi kode seperti berikut ini.
 #### > Langkah 8 : Edit method addRandomNumber()
 
 Edit kode seperti berikut ini.
+
+        void addRandomNumber() {
+            Random random = Random();
+            int myNum = random.nextInt(10);
+            // numberStream.addNumberToSink(myNum); // Add random number to stream
+            if (!numberStreamController.isClosed) {
+            numberStream.addNumberToSink(myNum);
+            }
+            else {
+            setState(() {
+                lastNumber = -1;
+            });
+            }
+        }
 
 #### > Langkah 9 : Run
 
@@ -348,7 +370,19 @@ Anda akan melihat pesan di Debug Console seperti berikut.
 **Soal 9**
 
 - Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
+
+Jawab :
+
+    - Langkah 2 : Pada langkah ini, kita menambahkan kode untuk membuat objek NumberStream dan NumberStreamController. Objek NumberStream akan digunakan untuk menghasilkan stream integer secara acak. Objek NumberStreamController akan digunakan untuk mengontrol stream tersebut.
+
+    - Langkah 6 : Pada langkah ini, kita menambahkan kode untuk membatalkan subscription di dispose(). Subscription ini harus dibatalkan untuk mencegah memory leak.
+
+    - Langkah 8 : Pada langkah ini, kita menambahkan kode untuk memeriksa apakah stream telah ditutup sebelum menambahkan data ke stream. Jika stream telah ditutup, kita akan mengubah nilai variabel lastNumber dengan nilai -1.
+
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+
+![Alt Text](./picture/p4.gif)
+
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 9".
 
 ### Praktikum 5 : Multiple Stream Subscriptions

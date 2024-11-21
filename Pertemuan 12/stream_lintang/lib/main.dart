@@ -32,47 +32,52 @@ class StreamHomePage extends StatefulWidget {
 
 class _StreamHomePageState extends State<StreamHomePage> {
   Color bgColor = Colors.blueGrey;
-  late ColorStream colorStream;
   late StreamController<int> numberStreamController;
-  late NumberStream numberStream;
-  late StreamTransformer<int, int> transformer;
+  late StreamSubscription subscription;
   int lastNumber = 0;
 
   @override
   void initState() {
     super.initState();
 
-    // Initialize color stream and change color
-    colorStream = ColorStream();
-    changeColor();
+    // Inisialisasi StreamController untuk angka
+    numberStreamController = StreamController<
+        int>.broadcast(); // Menjadikan stream sebagai broadcast
 
-    // Initialize number stream and controller
-    numberStream = NumberStream();
-    numberStreamController = numberStream.controller;
+    // Membuat stream dan mulai mendengarkan (listen) ke stream
+    Stream<int> stream = numberStreamController.stream
+        .asBroadcastStream(); // Convert ke broadcast stream
 
-    // Initialize transformer for stream
-    transformer = StreamTransformer<int, int>.fromHandlers(
+    // Langsung mendengarkan stream tanpa transformer
+    subscription = stream.listen((event) {
+      setState(() {
+        lastNumber = event; // Update lastNumber ketika ada data baru
+      });
+    });
+
+    // Transformer setup untuk stream
+    final transformer = StreamTransformer<int, int>.fromHandlers(
       handleData: (value, sink) {
-        sink.add(value * 10); // Perbaiki penulisan, seharusnya value * 10
+        sink.add(value * 10); // Perkalian nilai dengan 10
       },
       handleError: (error, trace, sink) {
-        sink.add(-1); // Send error handling value to stream
+        sink.add(-1); // Menangani error dengan mengirim -1 ke stream
       },
       handleDone: (sink) {
-        sink.close(); // Close the stream after processing
+        sink.close(); // Menutup stream setelah selesai
       },
     );
 
-    // Listen to the stream with transformation
+    // Mendengarkan stream yang telah ditransformasikan
     numberStreamController.stream.transform(transformer).listen(
       (event) {
         setState(() {
-          lastNumber = event;
+          lastNumber = event; // Update lastNumber ketika ada data baru
         });
       },
       onError: (error) {
         setState(() {
-          lastNumber = -1; // Set lastNumber to -1 if error occurs
+          lastNumber = -1; // Jika error terjadi, set lastNumber ke -1
         });
       },
     );
@@ -80,31 +85,16 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   @override
   void dispose() {
-    numberStreamController.close(); // Don't forget to close the controller
     super.dispose();
+    subscription.cancel(); // Jangan lupa membatalkan subscription saat dispose
+    numberStreamController.close(); // Menutup StreamController
   }
 
-  // Function to handle random number addition
+  // Fungsi untuk menambahkan angka acak ke dalam stream
   void addRandomNumber() {
     Random random = Random();
-    int myNum = random.nextInt(10);
-    numberStream.addNumberToSink(myNum); // Add random number to stream
-  }
-
-  void changeColor() async {
-    colorStream.getColors().listen(
-      (eventColor) {
-        setState(() {
-          bgColor = eventColor; // Update bgColor when a new color is emitted
-        });
-      },
-      onError: (error) {
-        setState(() {
-          bgColor =
-              Colors.red; // Handle error in color stream by setting red color
-        });
-      },
-    );
+    int myNum = random.nextInt(10); // Angka acak antara 0 dan 9
+    numberStreamController.sink.add(myNum); // Menambahkan angka ke stream
   }
 
   @override
@@ -119,14 +109,31 @@ class _StreamHomePageState extends State<StreamHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(lastNumber.toString()), // Display last number
+            // Menampilkan angka terakhir yang didapat dari stream
+            Text(lastNumber.toString(),
+                style: TextStyle(fontSize: 50, color: bgColor)),
+
             ElevatedButton(
-              onPressed: () => addRandomNumber(),
-              child: const Text('New Random Number'),
+              onPressed: () {
+                addRandomNumber(); // Menambahkan angka acak ke stream
+              },
+              child: const Text('Add Random Number'),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                stopStream(); // Menutup stream
+              },
+              child: const Text('Stop Subscription'),
             ),
           ],
         ),
       ),
     );
+  }
+
+  // Fungsi untuk menutup stream
+  void stopStream() {
+    numberStreamController.close();
   }
 }
