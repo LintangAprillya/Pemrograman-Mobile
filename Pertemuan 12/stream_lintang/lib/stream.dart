@@ -15,4 +15,13 @@ class ColorStream {
     Colors.blueGrey,
     Colors.red
   ];
+
+  //langkah 5 prak 1
+  Stream<Color> getColors() async* {
+    //langkah 6 prak 1
+    yield* Stream.periodic(const Duration(seconds: 1), (int t) {
+      int index = t % colors.length;
+      return colors[index];
+    });
+  }
 }

@@ -53,14 +53,41 @@ Tambahkan variabel di dalam class ColorStream seperti berikut.
 
 Di dalam class ColorStream ketik method seperti kode berikut. Perhatikan tanda bintang di akhir keyword async\* (ini digunakan untuk melakukan Stream data)
 
+![Praktikum 1 - Langkah 1](./picture/p1_lkh5.png)
+
 #### > Langkah 6 : Tambah perintah yield\*
 
 Tambahkan kode berikut ini.
 
+![Praktikum 1 - Langkah 1](./picture/p1_lkh6.png)
+
 **Soal 3**
 
 - Jelaskan fungsi keyword yield\* pada kode tersebut!
+
+  jawab :
+
+  - yield\* digunakan untuk mendistribusikan elemen-elemen dari sebuah Stream atau Iterable ke stream yang sedang dibangun oleh fungsi generator async.
+  - Dalam kode tersebut, yield\* mengambil nilai dari Stream.periodic dan meneruskannya ke output stream getColors().
+  - Fungsinya serupa dengan yield tetapi lebih efisien jika perlu menghasilkan seluruh elemen dari sebuah iterable atau stream lain.
+
 - Apa maksud isi perintah kode tersebut?
+
+  jawab :
+
+  - Stream.periodic:
+
+    Membuat stream yang menghasilkan nilai secara berkala (dalam hal ini setiap 1 detik).
+
+  - t % colors.length:
+
+    Menghitung indeks warna secara melingkar berdasarkan panjang array colors. Indeks ini digunakan untuk memastikan bahwa iterasi tetap dalam batas panjang array.
+
+  - Return Value:
+    Stream akan menghasilkan warna dari daftar colors sesuai dengan indeks yang dihitung setiap detik.
+
+  Secara keseluruhan: Kode ini menciptakan stream yang mengalirkan warna secara bergantian dari array colors setiap detik.
+
 - Lakukan commit hasil jawaban Soal 3 dengan pesan "W13: Jawaban Soal 3"
 
 #### > Langkah 7 : Buka main.dart
