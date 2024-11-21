@@ -153,19 +153,29 @@ Jawab :
 
 Lakukan impor dengan mengetik kode ini.
 
+import 'dart:async';
+
 #### > Langkah 2 : Tambah class NumberStream
 
 Tetap di file stream.dart tambah class baru seperti berikut.
+
+![Praktikum 1 - Langkah 1](./picture/p2_lkh25.png)
 
 #### > Langkah 3 : Tambah StreamController
 
 Di dalam class NumberStream buatlah variabel seperti berikut.
 
+![Praktikum 1 - Langkah 1](./picture/p2_lkh25.png)
+
 #### > Langkah 4 : Tambah method addNumberToSink
 
 Tetap di class NumberStream buatlah method ini
 
+![Praktikum 1 - Langkah 1](./picture/p2_lkh25.png)
+
 #### > Langkah 5 : Tambah method close()
+
+![Praktikum 1 - Langkah 1](./picture/p2_lkh25.png)
 
 #### > Langkah 6 : Buka main.dart
 
@@ -175,11 +185,19 @@ Ketik kode import seperti berikut
 
 Di dalam class \_StreamHomePageState ketik variabel berikut
 
+![Praktikum 1 - Langkah 1](./picture/p2_lkh7.png)
+
 #### > Langkah 8 : Edit initState()
+
+![Praktikum 1 - Langkah 1](./picture/p2_lkh8.png)
 
 #### > Langkah 9 : Edit dispose()
 
+![Praktikum 1 - Langkah 1](./picture/p2_lkh910.png)
+
 #### > Langkah 10 : Tambah method addRandomNumber()
+
+![Praktikum 1 - Langkah 1](./picture/p2_lkh910.png)
 
 #### > Langkah 11 : Edit method build()
 
@@ -190,7 +208,17 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat seperti gambar be
 **Soal 6**
 
 - Jelaskan maksud kode langkah 8 dan 10 tersebut!
+
+Jawab :
+
+    - Langkah 8: Pada kode ini, variabel bgColor digunakan untuk menyimpan warna latar belakang yang akan diperbarui secara dinamis, dan colorStream adalah objek dari kelas ColorStream yang berfungsi untuk mengelola stream warna.
+
+    - Langkah 10: initState() adalah metode yang dipanggil saat state widget pertama kali dibuat. Di sini, colorStream diinisialisasi dan changeColor() dipanggil untuk mulai mendengarkan stream warna dan memperbarui tampilan.
+
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+
+![Alt Text](./picture/p2.gif)
+
 - Lalu lakukan commit dengan pesan "W13: Jawaban Soal 6".
 
 #### Langkah 13 : Buka stream.dart

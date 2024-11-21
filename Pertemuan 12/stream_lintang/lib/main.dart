@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'stream.dart';
+import 'dart:async';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -52,9 +54,20 @@ class _StreamHomePageState extends State<StreamHomePage> {
   // Langkah 10: Override initState
   @override
   void initState() {
+    // super.initState();
+    // colorStream = ColorStream();
+    // changeColor(); // Panggil method changeColor
+
+    //langkah 8 prak 2
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+    stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    });
     super.initState();
-    colorStream = ColorStream();
-    changeColor(); // Panggil method changeColor
   }
 
   // Langkah 11: Ubah isi Scaffold
@@ -64,11 +77,40 @@ class _StreamHomePageState extends State<StreamHomePage> {
       appBar: AppBar(
         title: const Text('Lintang Stream'),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: bgColor, // Gunakan bgColor sebagai latar belakang
+      //prak2 lkh 11
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(lastNumber.toString()),
+            ElevatedButton(
+              onPressed: () => addRandomNumber(),
+              child: const Text('New Random Number'),
+            )
+          ],
         ),
       ),
     );
+  }
+
+  //prak 2 lkh 7
+  int lastNumber = 0;
+  late StreamController numberStreamController;
+  late NumberStream numberStream;
+
+  //prak 2 lkh 9
+  @override
+  void dispose() {
+    numberStreamController.close();
+    super.dispose();
+  }
+
+  //prak 2 lkh 10
+  void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
   }
 }
