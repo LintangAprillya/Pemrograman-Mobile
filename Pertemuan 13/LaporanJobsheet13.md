@@ -100,11 +100,17 @@ NIM : 2241720231
 
 #### > 2. Setelah Anda memiliki sebuah Map, Anda dapat menserialisasikannya kembali ke dalam string JSON. Tambahkan metode baru di di bagian bawah kelas \_MyHomePageState, di dalam file main.dart, yang disebut convertToJSON:
 
+![Praktikum 1 - Langkah 1](/picture/p2_l2.png)
+
 #### > 3. Metode ini mengubah objek List of Pizza kembali menjadi string Json dengan memanggil metode jsonEncode lagi di pustaka dart_convert.
 
 #### > 4. Terakhir, mari panggil metode tersebut dan cetak string JSON di Debug Console. Tambahkan kode berikut ke metode readJsonFile, tepat sebelum mengembalikan List myPizzas:
 
+![Praktikum 1 - Langkah 1](/picture/p2_l4.png)
+
 #### > 5. Jalankan aplikasi. Anda akan melihat string JSON dicetak, seperti yang ditunjukkan pada gambar berikut:
+
+![Praktikum 1 - Langkah 1](/picture/p2_l5.png)
 
 ### Praktikum 3
 

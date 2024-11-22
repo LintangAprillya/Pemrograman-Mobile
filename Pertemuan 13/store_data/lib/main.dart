@@ -51,10 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
       Pizza myPizza = Pizza.fromJson(pizza);
       myPizzas.add(myPizza);
     }
+
+    // Menyimpan dan mencetak JSON yang dikonversi
+    String json = convertToJSON(myPizzas);
+    print(json);
+
     return myPizzas;
   }
 
-  String convertToJSON
+  String convertToJSON(List<Pizza> pizzas) {
+    // Corrected to use pizza.toJson()
+    return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,4 +94,14 @@ class Pizza {
         description = json['description'],
         price = json['price'],
         imageUrl = json['imageUrl'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'pizzaName': pizzaName,
+      'description': description,
+      'price': price,
+      'imageUrl': imageUrl,
+    };
+  }
 }
