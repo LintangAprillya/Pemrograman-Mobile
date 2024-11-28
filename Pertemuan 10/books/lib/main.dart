@@ -1,11 +1,14 @@
 import 'dart:async';
-//import 'dart:js_interop';
+
 import 'package:books/geolocation.dart';
 import 'package:books/navigation_dialog.dart';
+import 'package:books/navigation_first.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,18 +17,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Future Demo - Lintang',
+      title: 'Flutter Demo Putri',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      //home: const FuturePage(),
-      //home: LocationScreen(),
-      //home: const NavigationFirst(),
-      home: const NavigationDialogScreen(),
+      home: const FuturePage(),
+      // home: LocationScreen(),
+      // home: const NavigationFirst(),
+      // home: const NavigationDialogScreen(),
     );
   }
 }
@@ -38,77 +42,109 @@ class FuturePage extends StatefulWidget {
 }
 
 class _FuturePageState extends State<FuturePage> {
+  int appCounter = 0;
   String result = '';
+
+  late Completer completer;
+
+  Future getNumber() {
+    completer = Completer<int>();
+    calculate();
+    return completer.future;
+  }
+
+  Future calculate() async {
+    try {
+      await Future.delayed(const Duration(seconds: 5));
+      completer.complete(42);
+    } catch (e) {
+      completer.completeError({});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lintang is Coming Back from the Future!'),
+        title: const Text('Back from the Future Putri'),
       ),
       body: Center(
-        child: Column(children: [
-          const Spacer(),
-          ElevatedButton(
-            child: const Text('GO!'),
-            onPressed: () {
-              //prak5
-              handleError();
+        child: Column(
+          children: [
+            const Spacer(),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('You Have opened the app $appCounter times.'),
+                  ElevatedButton(
+                    onPressed: () {
+                      deletePreference();
+                    },
+                    child: const Text('Reset Counter'),
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            ElevatedButton(
+              // Prak 5 langkah 2
 
-              // //prak5
-              // returnError().then((value) {
-              //   setState(() {
-              //     result = 'Success';
-              //   });
-              // }).catchError((onError) {
-              //   setState(() {
-              //     result = onError.toString();
-              //   });
-              // }).whenComplete(() => print('Complete'));
+              child: Text('GO!'),
+              onPressed: () {
+                handleError();
+                //   returnError().then((value){
+                //   setState(() {
+                //     result = 'Success';
+                //   });
+                // }).catchError((onError){
+                //   setState(() {
+                //     result = onError.toString();
+                //   });
+                // }).whenComplete(() => print('Complete'));
 
-              //prak 4 lkh2
-              // returnFG();
-
-              //prak3
-              // getNumber().then((value) {
-              //   setState(() {
-              //     result = value.toString();
-              //   });
-              // }).catchError((e) {
-              //   result = 'An error occured';
-              // });
-              //prak2
-              //count();
-
-              //prak1
-              // setState(() {});
-              // getData().then((value) {
-              //   result = value.body.toString().substring(0, 450);
-              //   setState(() {});
-              // }).catchError((_) {
-              //   result = 'An error occurred';
-              //   setState(() {});
-              // });
-            },
-          ),
-          const Spacer(),
-          Text(result),
-          const Spacer(),
-          const CircularProgressIndicator(),
-          const Spacer(),
-        ]),
+                // setState(() {});
+                // getData().then((value) {
+                //   result = value.body.toString().substring(0, 450);
+                //   setState(() {});
+                // }).catchError((_) {
+                //   result = 'An error occured';
+                //   setState(() {});
+                // });
+                // count();
+                // getNumber().then((value){
+                //   setState(() {
+                //     result = value.toString();
+                //   });
+                // });
+                // getNumber().then((value) {
+                //   setState(() {
+                //     result = value.toString();
+                //   });
+                // }).catchError((e) {
+                //   result = 'An error occurred';
+                // });
+                // returnFG();
+              },
+            ),
+            const Spacer(),
+            Text(result),
+            const Spacer(),
+            const CircularProgressIndicator(),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
 
   Future<Response> getData() async {
     const authority = 'www.googleapis.com';
-    const path = '/books/v1/volumes/junbDwAAQBAJ';
+    const path = '/books/v1/volumes/-F_lEAAAQBAJ';
     Uri url = Uri.https(authority, path);
     return http.get(url);
   }
 
-//praktikum 2
-//langkah 1
   Future<int> returnOneAsync() async {
     await Future.delayed(const Duration(seconds: 3));
     return 1;
@@ -124,7 +160,6 @@ class _FuturePageState extends State<FuturePage> {
     return 3;
   }
 
-  //langkah 2
   Future count() async {
     int total = 0;
     total = await returnOneAsync();
@@ -135,38 +170,27 @@ class _FuturePageState extends State<FuturePage> {
     });
   }
 
-  //praktikum 3
-  //langkah 2
-  late Completer completer;
-
-  Future getNumber() {
-    completer = Completer<int>();
-    calculate();
-    return completer.future;
-  }
-
-  Future calculate() async {
-    //prak3
-    //langkah3
-    try {
-      await new Future.delayed(const Duration(seconds: 5));
-      completer.complete(42);
-    } catch (_) {
-      completer.completeError({});
-    }
-
-    // await Future.delayed(const Duration(seconds: 5));
-    // completer.complete(42);
-  }
-
-  //prak 4
   void returnFG() {
-    FutureGroup<int> futureGroup = FutureGroup<int>();
-    futureGroup.add(returnOneAsync());
-    futureGroup.add(returnTwoAsync());
-    futureGroup.add(returnThreeAsync());
-    futureGroup.close();
-    futureGroup.future.then((List<int> value) {
+    // FutureGroup<int> futureGroup = FutureGroup<int>();
+    // futureGroup.add(returnOneAsync());
+    // futureGroup.add(returnTwoAsync());
+    // futureGroup.add(returnThreeAsync());
+    // futureGroup.close();
+    // futureGroup.future.then((List <int> value){
+    //   int total = 0;
+    //   for (var element in value){
+    //     total += element;
+    //   }
+    //   setState(() {
+    //     result = total.toString();
+    //   });
+    // });
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+    futures.then((List<int> value) {
       int total = 0;
       for (var element in value) {
         total += element;
@@ -177,8 +201,6 @@ class _FuturePageState extends State<FuturePage> {
     });
   }
 
-  //prak5
-  //lkh 1
   Future returnError() async {
     await Future.delayed(const Duration(seconds: 2));
     throw Exception('Something terrible happened!');
@@ -192,7 +214,31 @@ class _FuturePageState extends State<FuturePage> {
         result = error.toString();
       });
     } finally {
-      print('complete');
+      print('Complete');
     }
+  }
+
+  Future readAndWritePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appCounter = prefs.getInt('appCounter') ?? 0;
+    appCounter++;
+    await prefs.setInt('appCounter', appCounter);
+    setState(() {
+      appCounter = appCounter;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readAndWritePreference();
+  }
+
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    setState(() {
+      appCounter = 0;
+    });
   }
 }
