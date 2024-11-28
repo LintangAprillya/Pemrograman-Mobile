@@ -202,21 +202,70 @@ Buatlah project flutter baru dengan nama path_provider
 
 #### > 7. Jalankan aplikasi. Anda akan melihat layar yang terlihat seperti berikut ini:
 
+![Praktikum 1 - Langkah 1](./picture/p4_l7.png)
+
 ### Praktikum 5: Accessing the filesystem, part 2: Working with directories
 
 #### > 1. Di bagian atas berkas main.dart, impor pustaka dart:io:
 
+        import 'dart:io';
+
 #### > 2. Di bagian atas kelas \_MyHomePageState, di file main.dart, buat dua variabel State baru untuk file dan isinya:
+
+        late File myFile;
+        String fileText = '';
 
 #### > 3. Masih dalam kelas MyHomePageState, buat metode baru bernama writeFile dan gunakan kelas File dari pustaka dart:io untuk membuat file baru:
 
+        Future<bool> writeFile() async{
+            try{
+            await myFile.writeAsString('Margherita, Capricciosa, Napoli');
+            return true;
+            }catch(e){
+            return false;
+            }
+        }
+
 #### > 4. Dalam metode initState, setelah memanggil metode getPaths, dalam metode then, buat sebuah file dan panggil metode writeFile:
+
+         @override
+            void initState(){
+                super.initState();
+                getPaths().then((_){
+                myFile = File('$documentsPath/pizzas.txt');
+                writeFile();
+                });
+            }
 
 #### > 5. Buat metode untuk membaca file:
 
+        Future<bool> readFile() async{
+            try{
+            String fileContent = await myFile.readAsString();
+            setState(() {
+                fileText =fileContent;
+            });
+            return true;
+            }catch(e){
+            return false;
+            }
+        }
+
 #### > 6. Dalam metode build, di widget Column, perbarui antarmuka pengguna dengan ElevatedButton. Ketika pengguna menekan tombol, tombol akan mencoba membaca konten file dan menampilkannya di layar, cek kode cetak tebal:
 
+        children: [
+          Text('Doc path: $documentsPath'),
+          Text('Temp path $tempPath'),
+          ElevatedButton(
+            onPressed: () => readFile(),
+            child: const Text('Read File')
+          ),
+          Text(fileText),
+        ],
+
 #### > 7. Jalankan aplikasi dan tekan tombol Baca File. Di bawah tombol tersebut, Anda akan melihat teks Margherita, Capricciosa, Napoli, seperti yang ditunjukkan pada tangkapan layar berikut:
+
+![Praktikum 1 - Langkah 1](./picture/p5_l7.png)
 
 ### Praktikum 6: Using secure storage to store data
 
@@ -224,18 +273,112 @@ Buatlah project flutter baru dengan nama store_data
 
 #### > 1. Tambahkan flutter_secure_storage ke proyek Anda, dengan mengetik:
 
+![Praktikum 1 - Langkah 1](./picture/p6_l1.png)
+
 #### > 2. Di file main.dart, salin kode berikut:
+
+        void main() {
+
+runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+const MyApp({super.key});
+
+// This widget is the root of your application.
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+title: 'Flutter JSON Demo',
+theme: ThemeData(
+primarySwatch: Colors.deepPurple,
+),
+home: const MyHomePage(),
+);
+}
+}
+
+class MyHomePage extends StatefulWidget {
+const MyHomePage({super.key});
+
+@override
+State<MyHomePage> createState() => \_MyHomePageState();
+}
+
+class \_MyHomePageState extends State<MyHomePage> {
+// String pizzaString = '';
+// List<Pizza> myPizzas = [];
+final pwdController = TextEditingController();
+String myPass ='';
+
+@override
+void initState() {
+super.initState();
+}
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: const Text('Path Provider')),
+body:SingleChildScrollView(
+child: Padding(
+padding: const EdgeInsets.all(16.0),
+child: Column(
+children: [
+TextField(
+controller: pwdController,
+),
+ElevatedButton(child: const Text('Save Value'), onPressed: (){}),
+ElevatedButton(child: const Text('Red Value'), onPressed: (){}),
+Text(myPass),
+],
+),
+),
+),
+// body: Container(),
+);
+}
 
 #### > 3. Di bagian atas file main.dart, tambahkan impor yang diperlukan:
 
+    import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 #### > 4. Di bagian atas kelas \_myHomePageState, buat penyimpanan yang aman:
+
+    final storage = const FlutterSecureStorage();
+    final myKey = 'myPass';
 
 #### > 5. Di kelas \_myHomePageState, tambahkan metode untuk menulis data ke penyimpanan aman:
 
+      Future writeToSecureStorage() async {
+            await storage.write(key: myKey, value: pwdController.text);
+        }
+
 #### > 6. Pada metode build() dari kelas \_myHomePageState, tambahkan kode yang akan menulis ke penyimpanan ketika pengguna menekan tombol Save Value, cek kode cetak tebal:
+
+                ElevatedButton(
+                    child: const Text('Save Value'),
+                    onPressed: (){writeToSecureStorage();
+                }),
 
 #### > 7. Di kelas \_myHomePageState, tambahkan metode untuk membaca data dari penyimpanan aman:
 
+        Future<String> readFromSecureStorage() async{
+            String secret = await storage.read(key: myKey)?? '';
+            return secret;
+        }
+
 #### > 8. Pada metode build() dari kelas \_myHomePageState, tambahkan kode untuk membaca dari penyimpanan ketika pengguna menekan tombol Read Value dan memperbarui variabel myPass State:
 
+            ElevatedButton(
+                child: const Text('Read Value'),
+                onPressed: (){readFromSecureStorage().then((value){
+                  setState(() {
+                    myPass = value;
+                  });
+                });
+              }),
+
 #### > 9. Jalankan aplikasi dan tulis beberapa teks pilihan Anda di bidang teks. Kemudian, tekan tombol Save Value. Setelah itu, tekan tombol Read Value. Anda akan melihat teks yang Anda ketik di kolom teks, seperti yang ditunjukkan pada tangkapan layar berikut:
+
+![Alt Text](./picture/p7.gif)

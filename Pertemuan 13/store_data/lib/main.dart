@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
 import './pizza.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,12 +10,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lintang Flutter JSON Demo',
+      title: 'Flutter JSON Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const MyHomePage(),
     );
@@ -29,81 +31,81 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Pizza> myPizzas = [];
+  // String pizzaString = '';
+  // List<Pizza> myPizzas = [];
+  final pwdController = TextEditingController();
+  String myPass = '';
+  final storage = const FlutterSecureStorage();
+  final myKey = 'myPass';
 
   @override
   void initState() {
     super.initState();
-    readJsonFile().then((value) {
-      setState(() {
-        myPizzas = value;
-      });
-    });
-  }
-
-  Future<List<Pizza>> readJsonFile() async {
-    String myString = await DefaultAssetBundle.of(context)
-        .loadString('assets/pizzalist.json');
-    List pizzaMapList = jsonDecode(myString);
-
-    List<Pizza> myPizzas = [];
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      myPizzas.add(myPizza);
-    }
-
-    // Menyimpan dan mencetak JSON yang dikonversi
-    String json = convertToJSON(myPizzas);
-    print(json);
-
-    //return mypizzas
-    return myPizzas;
-  }
-
-  String convertToJSON(List<Pizza> pizzas) {
-    // Corrected to use pizza.toJson()
-    return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('JSON')),
-      body: ListView.builder(
-        itemCount: myPizzas.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(myPizzas[index].pizzaName),
-            subtitle: Text(myPizzas[index].description),
-          );
-        },
+      appBar: AppBar(title: const Text('Path Provider')),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: pwdController,
+              ),
+              ElevatedButton(
+                  child: const Text('Save Value'),
+                  onPressed: () {
+                    writeToSecureStorage();
+                  }),
+              ElevatedButton(
+                  child: const Text('Read Value'),
+                  onPressed: () {
+                    readFromSecureStorage().then((value) {
+                      setState(() {
+                        myPass = value;
+                      });
+                    });
+                  }),
+              Text(myPass),
+            ],
+          ),
+        ),
       ),
+      // body: Container(),
     );
   }
-}
 
-//class pizza
-class Pizza {
-  final int id;
-  final String pizzaName;
-  final String description;
-  final double price;
-  final String imageUrl;
-
-  Pizza.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        pizzaName = json['pizzaName'],
-        description = json['description'],
-        price = json['price'],
-        imageUrl = json['imageUrl'];
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'pizzaName': pizzaName,
-      'description': description,
-      'price': price,
-      'imageUrl': imageUrl,
-    };
+  Future writeToSecureStorage() async {
+    await storage.write(key: myKey, value: pwdController.text);
   }
+
+  Future<String> readFromSecureStorage() async {
+    String secret = await storage.read(key: myKey) ?? '';
+    return secret;
+  }
+
+  // Future<List<Pizza>> readJsonFile() async {
+  //   String myString = await DefaultAssetBundle.of(context)
+  //       .loadString('assets/pizzalist.json');
+  //   List pizzaMapList = jsonDecode(myString);
+  //   // setState((){
+  //   //   pizzaString = myString;
+  //   // });
+
+  //   List<Pizza> myPizzas = [];
+  //   for (var pizza in pizzaMapList) {
+  //     Pizza myPizza = Pizza.fromJson(pizza);
+  //     myPizzas.add(myPizza);
+  //   }
+  //   String json = convertToJSON(myPizzas);
+  //   print(json);
+  //   return myPizzas;
+  // }
+
+  // String convertToJSON(List<Pizza> pizzas) {
+  //   return jsonEncode(pizzas.map((pizza) => jsonEncode(pizza)).toList());
+  // }
 }
