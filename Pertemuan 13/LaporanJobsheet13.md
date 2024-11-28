@@ -128,8 +128,90 @@ NIM : 2241720231
 
 #### > 4. Di bagian atas kelas \_MyHomePageState, buat variabel status integer baru bernama appCounter:
 
+![Praktikum 1 - Langkah 1](./picture/p3_l4.png)
+
+#### > 5. Dalam kelas \_MyHomePageState, buat metode asinkron baru yang disebut readAndWritePreferences():
+
+#### > 6. Di dalam metode readAndWritePreference, buatlah sebuah instance dari SharedPreferences:
+
+#### > 7. Setelah membuat instance preferensi, kita membuat kode yang mencoba baca nilai kunci appCounter. Jika nilainya nol, setel ke 0; lalu naikkan nilainya:
+
+#### > 8. Setelah itu, atur nilai kunci appCounter di preferensi ke nilai baru:
+
+#### > 9. Memperbarui nilai status appCounter:
+
+#### > 10. Pada metode initState di kelas \_MyHomePageState, panggil metode readAndWritePreference() dengan kode yang dicetak tebal:
+
+#### > 11. Dalam metode build, tambahkan kode berikut ini di dalam widget Container:
+
+#### > 12. Jalankan aplikasi. Saat pertama kali membukanya, Anda akan melihat layar yang mirip dengan yang berikut ini:
+
+#### > 13. Tambahkan metode baru ke kelas \_MyHomePageState yang disebut deletePreference(), yang akan menghapus nilai yang disimpan:
+
+#### > 14. Dari properti onPressed dari widget ElevatedButton di metode build(), memanggil metode deletePreference(), dengan kode di cetak tebal:
+
+#### > 15. Jalankan aplikasi lagi. Sekarang, saat Anda menekan tombol Reset penghitung, nilai appCounter akan dihapus
+
 ### Praktikum 4
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
 
 ### Praktikum 5
 
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
 ### Praktikum 6
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
+
+#### >
