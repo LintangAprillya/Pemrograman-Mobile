@@ -1,6 +1,8 @@
+import 'dart:convert';
+import 'package:pizza_api_lintangaprillya/httphelper.dart';
+
+import './pizza.dart';
 import 'package:flutter/material.dart';
-import 'httphelper.dart';
-import 'pizza.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,80 +14,55 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lintang Pizza List',
+      title: 'API Lintang Aprillya',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Lintang Pizza Menu'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePage();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  // Future method to fetch pizza list
+class _MyHomePage extends State<MyHomePage> {
   Future<List<Pizza>> callPizzas() async {
     HttpHelper helper = HttpHelper();
     List<Pizza> pizzas = await helper.getPizzaList();
     return pizzas;
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: FutureBuilder<List<Pizza>>(
-        future: callPizzas(),
-        builder: (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('Something went wrong'),
-            );
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text('No pizzas found'),
-            );
-          }
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (BuildContext context, int position) {
-              final pizza = snapshot.data![position];
-              return ListTile(
-                leading: Image.network(
-                  pizza.imageUrl,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                      const Icon(Icons.image_not_supported),
-                ),
-                title: Text(pizza.pizzaName),
-                subtitle: Text(
-                  '${pizza.description}\n\$${pizza.price.toStringAsFixed(2)}',
-                ),
-                isThreeLine: true,
+        appBar: AppBar(
+          title: const Text('JSON'),
+        ),
+        body: FutureBuilder(
+            future: callPizzas(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Something went wrong');
+              }
+              if (!snapshot.hasData) {
+                return const CircularProgressIndicator();
+              }
+              return ListView.builder(
+                itemCount: (snapshot.data == null) ? 0 : snapshot.data!.length,
+                itemBuilder: (BuildContext context, int position) {
+                  return ListTile(
+                    title: Text(snapshot.data![position].pizzaName),
+                    subtitle: Text(snapshot.data![position].description +
+                        '- e ' +
+                        snapshot.data![position].price.toString()),
+                  );
+                },
               );
-            },
-          );
-        },
-      ),
-    );
+            }));
   }
 }

@@ -1,22 +1,22 @@
 import 'dart:io';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'pizza.dart';
 
 class HttpHelper {
-  final String authority = 'app.wiremock.cloud';
-  final String path = 'j6rqq.wiremockapi.cloud';
+  final String authority = 'j6rqq.wiremockapi.cloud';
+  final String path = 'pizzalist';
 
   Future<List<Pizza>> getPizzaList() async {
     final Uri url = Uri.https(authority, path);
     final http.Response result = await http.get(url);
+    if (result.statusCode == HttpStatus.ok) {
+      final jsonResponse = json.decode(result.body) as List;
 
-    if (result.statusCode == 200) {
-      // Parse JSON response
-      final List<dynamic> jsonResponse = json.decode(result.body);
-      return jsonResponse.map<Pizza>((item) => Pizza.fromJson(item)).toList();
+      List<Pizza> pizzas =
+          jsonResponse.map<Pizza>((i) => Pizza.fromJson(i)).toList();
+      return pizzas;
     } else {
-      // Return empty list if the request fails
       return [];
     }
   }

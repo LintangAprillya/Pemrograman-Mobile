@@ -50,7 +50,10 @@ Kode ini digunakan untuk mengakses data dari API yang menyediakan daftar pizza, 
 
 ![Praktikum 1 - Langkah 1](./picture/p1_l9.png)
 
-#### >
+#### > 10. Jalankan aplikasi. Anda akan melihat layar yang mirip dengan berikut ini:
+
+![Praktikum 1 - Langkah 1](./picture/p1_l101.png)
+![Praktikum 1 - Langkah 1](./picture/p1_l102.png)
 
 #### >
 
