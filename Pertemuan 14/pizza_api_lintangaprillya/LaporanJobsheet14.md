@@ -55,29 +55,71 @@ Kode ini digunakan untuk mengakses data dari API yang menyediakan daftar pizza, 
 ![Praktikum 1 - Langkah 1](./picture/p1_l101.png)
 ![Praktikum 1 - Langkah 1](./picture/p1_l102.png)
 
-#### >
+### B. Praktikum 2. POST-ing data
 
-#### >
+#### > 1. Masuk ke layanan Lab Mock di https://app.wiremock.cloud/ dan klik bagian Stubs, kemudian, buatlah stub baru.
 
-#### >
+#### > 2. Lengkapi isian seperti gambar berikut:
 
-#### >
+![Praktikum 1 - Langkah 1](./picture/p2_l1.png)
 
-#### >
+#### > 3. Simpan.
 
-#### >
+#### > 4. Di proyek Flutter, di file httpHelper.dart, di kelas HttpHelper, buat metode baru bernama postPizza, lengkapi kode sebagai berikut.
 
-#### >
+![Praktikum 1 - Langkah 1](./picture/p2_l4.png)
 
-#### >
+#### > 5. Di dalam proyek, buat sebuah file baru bernama pizza_detail.dart.
 
-#### >
+#### > 6. Di bagian atas file baru, tambahkan impor yang diperlukan.
 
-#### >
+![Praktikum 1 - Langkah 1](./picture/p2_l6.png)
 
-#### >
+#### > 7. Buat StatefulWidget bernama PizzaDetailScreen.
 
-#### >
+![Praktikum 1 - Langkah 1](./picture/p2_l7.png)
+
+#### > 8. Di bagian atas kelas \_PizzaDetailScreenState, tambahkan lima widget TextEditingController. Widget ini akan berisi data untuk objek Pizza yang akan diposting nanti. Juga, tambahkan sebuah String yang akan berisi hasil dari permintaan POST.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l8.png)
+
+- TextField: Setiap TextField memiliki kontrol terhubung dengan TextEditingController yang dideklarasikan di atas.
+- Tombol Save: Tombol Save Pizza memanggil metode POST melalui HttpHelper, mengirim data pizza baru ke API.
+- Hasil Operasi: operationResult diperbarui menggunakan setState(), dan ditampilkan di bawah tombol untuk memberi umpan balik kepada pengguna.
+
+#### > 9. Override metode dispose() untuk membuang controllers
+
+![Praktikum 1 - Langkah 1](./picture/p2_l9.png)
+
+digunakan untuk membersihkan resource yang tidak lagi diperlukan, seperti TextEditingController, guna menghindari kebocoran memori saat widget PizzaDetailScreen dihapus dari widget tree. Metode ini memanggil dispose() pada setiap controller, seperti txtId.dispose(), txtName.dispose(), dan seterusnya, untuk melepaskan memori yang digunakan. Pemanggilan super.dispose() memastikan pembersihan resource pada parent class juga dilakukan. Dengan implementasi ini, aplikasi akan tetap optimal dan tidak mengalami masalah performa akibat penggunaan resource yang tidak dibersihkan.
+
+#### > 10. Dalam metode build() pada kelas, kita return sebuah Scaffold, yang AppBar-nya berisi Teks yang menyatakan “Detail Pizza” dan Body-nya berisi Padding dan SingleChildScrollView yang berisi Column.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l10.png)
+
+Pada kode ini, pertama-tama ditambahkan beberapa TextField untuk mengisi data terkait pizza, seperti ID, nama, deskripsi, harga, dan URL gambar, masing-masing dengan TextEditingController untuk menangani input pengguna. Setiap TextField diberi label yang sesuai agar pengguna tahu apa yang perlu diisi. Kemudian, ditambahkan tombol "Save Pizza" yang nantinya dapat digunakan untuk mengirim data ke server atau menyimpan data pizza yang diinput. Jika ada pesan hasil operasi, seperti konfirmasi penyimpanan, pesan tersebut akan ditampilkan di bawah tombol. Di bagian dispose(), semua TextEditingController dibersihkan setelah pengguna selesai, untuk menghindari kebocoran memori.
+
+#### > 11. Untuk properti anak dari Column, tambahkan beberapa Text yang akan berisi hasil posting, lima TextFields, masing-masing terikat pada TextEditingController, dan sebuah ElevatedButton untuk menyelesaikan aksi POST (metode postPizza akan dibuat berikutnya). Juga, tambahkan SizedBox untuk memberi jarak pada widget di layar.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l11.png)
+
+#### > 12. Di bagian bawah kelas \_PizzaDetailState, tambahkan metode postPizza.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l12.png)
+
+Metode ini dipanggil ketika tombol "Send Post" ditekan, yang akan membuat objek Pizza baru, mengisi atribut-atributnya dengan data dari TextField, dan kemudian memanggil HttpHelper().postPizza(pizza) untuk mengirim data tersebut. Hasil dari permintaan tersebut (string result) akan disimpan dalam variabel operationResult dan ditampilkan di UI menggunakan setState(), yang akan memicu pembaruan tampilan widget.
+
+#### > 13. Di file main.dart, impor file pizza_detail.dart.
+
+#### > 14. Di perancah metode build() dari kelas \_MyHomePageState, tambahkan FloatingActionButton yang akan menavigasi ke rute PizzaDetail.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l14.png)
+
+#### > 15. Jalankan aplikasi. Pada layar utama, tekan FloatingActionButton untuk menavigasi ke rute PizzaDetail
+
+#### > 16. Tambahkan detail pizza di kolom teks dan tekan tombol Kirim Postingan. Anda akan melihat hasil yang berhasil, seperti yang ditunjukkan pada gambar berikut.
+
+![Praktikum 1 - Langkah 1](./picture/p2_l16.png)
 
 #### >
 
