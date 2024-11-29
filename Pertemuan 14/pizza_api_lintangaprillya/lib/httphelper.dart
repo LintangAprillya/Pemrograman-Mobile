@@ -4,7 +4,7 @@ import 'pizza.dart';
 
 class HttpHelper {
   final String authority = 'app.wiremock.cloud';
-  final String path = 'j6rqq.wiremockapi.cloud/';
+  final String path = 'j6rqq.wiremockapi.cloud';
 
   Future<List<Pizza>> getPizzaList() async {
     final Uri url = Uri.https(authority, path);
