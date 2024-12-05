@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pizza.dart';
-import 'httphelper.dart';
-import 'pizza_detail.dart';
+import 'package:pizza_api_lintangaprillya/pizza_detail.dart';
+import 'package:pizza_api_lintangaprillya/httphelper.dart';
+import 'package:pizza_api_lintangaprillya/pizza.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pizza API Lintang Aprillya',
+      title: 'API Sofiaaa',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -40,33 +40,60 @@ class _MyHomePage extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pizza List Lintang'),
+        title: const Text('Lintang Pizza API'),
       ),
       body: FutureBuilder<List<Pizza>>(
         future: callPizzas(),
         builder: (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
           if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
+            return const Center(
+              child: Text('Something went wrong'),
+            );
           }
-
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
-
-          if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No pizza data available'));
-          }
-
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int position) {
-              // Mengakses item secara aman
-              var pizza = snapshot.data![position];
+              return Dismissible(
+                key: Key(snapshot.data![position].id.toString()),
+                onDismissed: (direction) {
+                  setState(() {
+                    HttpHelper helper = HttpHelper();
+                    // Save the deleted pizza details before removing it
+                    Pizza deletedPizza = snapshot.data![position];
 
-              return ListTile(
-                title: Text('Pizza'),
-                subtitle:
-                    Text('${pizza.description} - Rp ${pizza.price.toString()}'),
+                    // Call delete API
+                    helper.deletePizza(deletedPizza.id);
+
+                    // Remove the pizza from the list
+                    snapshot.data!.removeAt(position);
+
+                    // Log the deletion in the console
+                    print(
+                        "Deleted Pizza: ${deletedPizza.pizzaName} (ID: ${deletedPizza.id})");
+                  });
+                },
+                child: ListTile(
+                  title: Text(snapshot.data![position].pizzaName),
+                  subtitle: Text(
+                    '${snapshot.data![position].description} - € ${snapshot.data![position].price.toStringAsFixed(2)}',
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PizzaDetailScreen(
+                          pizza: snapshot.data![position],
+                          isNew: false,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           );
@@ -78,7 +105,16 @@ class _MyHomePage extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const PizzaDetailScreen(),
+              builder: (context) => PizzaDetailScreen(
+                pizza: Pizza(
+                  id: 0, // Default values for a new pizza
+                  pizzaName: '',
+                  description: '',
+                  price: 0.0,
+                  imageUrl: '',
+                ),
+                isNew: true, // Adding a new pizza
+              ),
             ),
           );
         },
